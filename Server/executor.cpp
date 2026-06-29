@@ -84,16 +84,24 @@ void Server::onDisconnected() {
 
 void Server::onReadyRead()
 {
-    QString msg = QString::fromUtf8(client_tcp_->readAll());
+    QDataStream stream(client_tcp_);
+    stream.setVersion(QDataStream::Qt_5_5);
 
-    if (msg == "loadcss") {
+    quint32 msgSize;
+    stream >> msgSize;                              // читаем размер
+    QByteArray payload = client_tcp_->read(msgSize); // читаем тело
+
+    // Теперь у нас есть полное сообщение
+    GROUP_DATA::command_data data = GROUP_DATA::command_data::deserialize(payload);
+
+    if (data.cmd == "loadcss") {
         QMetaObject::invokeMethod
         (
             &Executor::instance(),
             "loadCss",
             Qt::QueuedConnection
         );
-    } else if (msg == "start") {
+    } else if (data.cmd == "start") {
         QMetaObject::invokeMethod
         (
             &Executor::instance(),
@@ -101,7 +109,7 @@ void Server::onReadyRead()
             Qt::QueuedConnection
         );
         this->process_data_timer_->start(100);
-    } else if (msg == "stop") {
+    } else if (data.cmd == "stop") {
         QMetaObject::invokeMethod
         (
             &Executor::instance(),
@@ -109,37 +117,14 @@ void Server::onReadyRead()
             Qt::QueuedConnection
         );
         this->process_data_timer_->stop();
-    } else if (msg == "ki1") {
+    } else if (data.cmd == "loadNewKu") {
         QMetaObject::invokeMethod
         (
             &Executor::instance(),
             "loadNewKu",
             Qt::QueuedConnection,
-            Q_ARG(int, 1)
-        );
-    } else if (msg == "ki2") {
-        QMetaObject::invokeMethod
-        (
-            &Executor::instance(),
-            "loadNewKu",
-            Qt::QueuedConnection,
-            Q_ARG(int, 2)
-        );
-    } else if (msg == "ki3") {
-        QMetaObject::invokeMethod
-        (
-            &Executor::instance(),
-            "loadNewKu",
-            Qt::QueuedConnection,
-            Q_ARG(int, 3)
-        );
-    } else if (msg == "ki4") {
-        QMetaObject::invokeMethod
-        (
-            &Executor::instance(),
-            "loadNewKu",
-            Qt::QueuedConnection,
-            Q_ARG(int, 4)
+            Q_ARG(int, data.ki),
+            Q_ARG(int, data.ns)
         );
     }
 }
@@ -577,7 +562,7 @@ void Executor::loadCss()
     }
 }
 
-void Executor::loadNewKu(int ki)
+void Executor::loadNewKu(int ki, int ns)
 {
     loadTS("/po/complex/tech_new/furke/css/TS_1.dat");
 
@@ -602,7 +587,7 @@ void Executor::loadNewKu(int ki)
     cssfbhdr->crc = calculatedCRC;
 
     proto_farbos::frame_upr_css *css = reinterpret_cast<proto_farbos::frame_upr_css*>(&words1[1]);
-    int kns = 10;
+    int kns = ns;
     css->nkch = 2;
     css->pr_zi = 1;
     css->pr_ps = 1;

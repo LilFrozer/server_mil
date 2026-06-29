@@ -33,7 +33,7 @@ add_executable(server_mil
 
 add_library(libdspapi SHARED IMPORTED)
 set_target_properties(libdspapi PROPERTIES
-    IMPORTED_LOCATION C:/Users/user/Desktop/server_mil/libdspapidata.so
+    IMPORTED_LOCATION C:/tmp/5p27_NEW/Server/libdspapidata.so
 )
 
 add_library(zstd STATIC

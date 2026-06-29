@@ -367,8 +367,19 @@ void Client::onLoadCss() {
     if (!socket_)
         return;
 
-    QString cmd = "loadcss";
-    socket_->write(cmd.toUtf8());
+    GROUP_DATA::command_data cmd;
+    cmd.cmd = "loadcss";
+    cmd.ki = ui->wdgt_KI->value();
+    cmd.ns = ui->wdgt_NS->value();
+
+    QByteArray payload = GROUP_DATA::command_data::serilize(cmd);
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+    out << quint32(payload.size());
+    block.append(payload);
+
+    socket_->write(block);
     socket_->flush();
 }
 
@@ -376,8 +387,19 @@ void Client::onStart() {
     if (!socket_)
         return;
 
-    QString cmd = "start";
-    socket_->write(cmd.toUtf8());
+    GROUP_DATA::command_data cmd;
+    cmd.cmd = "start";
+    cmd.ki = ui->wdgt_KI->value();
+    cmd.ns = ui->wdgt_NS->value();
+
+    QByteArray payload = GROUP_DATA::command_data::serilize(cmd);
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+    out << quint32(payload.size());
+    block.append(payload);
+
+    socket_->write(block);
     socket_->flush();
 }
 
@@ -385,8 +407,19 @@ void Client::onStop() {
     if (!socket_)
         return;
 
-    QString cmd = "stop";
-    socket_->write(cmd.toUtf8());
+    GROUP_DATA::command_data cmd;
+    cmd.cmd = "stop";
+    cmd.ki = ui->wdgt_KI->value();
+    cmd.ns = ui->wdgt_NS->value();
+
+    QByteArray payload = GROUP_DATA::command_data::serilize(cmd);
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+    out << quint32(payload.size());
+    block.append(payload);
+
+    socket_->write(block);
     socket_->flush();
 }
 
@@ -394,7 +427,18 @@ void Client::onSendKu() {
     if (!socket_)
         return;
 
-    QString cmd = "ki" + QString::number(ui->wdgt_KI->value());
-    socket_->write(cmd.toUtf8());
+    GROUP_DATA::command_data cmd;
+    cmd.cmd = "loadNewKu";
+    cmd.ki = ui->wdgt_KI->value();
+    cmd.ns = ui->wdgt_NS->value();
+
+    QByteArray payload = GROUP_DATA::command_data::serilize(cmd);
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_7);
+    out << quint32(payload.size());
+    block.append(payload);
+
+    socket_->write(block);
     socket_->flush();
 }

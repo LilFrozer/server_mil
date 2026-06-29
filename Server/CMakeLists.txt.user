@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 6.0.2, 2026-06-29T18:23:00. -->
+<!-- Written by QtCreator 6.0.2, 2026-06-30T01:31:43. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{1ed96744-7afa-445d-91c4-6c05c01f654d}</value>
+  <value type="QByteArray">{a39497fb-1c9a-4d6e-8116-97bb3233147b}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -74,7 +74,7 @@
     <value type="bool" key="ClangTools.AnalyzeOpenFiles">true</value>
     <value type="bool" key="ClangTools.BuildBeforeAnalysis">true</value>
     <value type="QString" key="ClangTools.DiagnosticConfig">Builtin.DefaultTidyAndClazy</value>
-    <value type="int" key="ClangTools.ParallelJobs">2</value>
+    <value type="int" key="ClangTools.ParallelJobs">6</value>
     <valuelist type="QVariantList" key="ClangTools.SelectedDirs"/>
     <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
     <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
@@ -102,7 +102,7 @@
 -DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
 -DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
 -DCMAKE_TOOLCHAIN_FILE:STRING=C:/KPDA2021/host/win64/x86_64/mk/cmake/toolchain-nto-x86.cmake</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\user\Desktop\build-server_mil-2021_x86_Qt_5_7_1_GCC_8_3_0-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\tmp\5p27_NEW\BUILD_SERVER</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
@@ -145,10 +145,10 @@
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteKpda.MakeInstall</value>
-      <value type="QString" key="RemoteKpda.MakeInstall.MakeArguments">--build C:/Users/user/Desktop/build-server_mil-2021_x86_Qt_5_7_1_GCC_8_3_0-Debug --target install</value>
-      <value type="QString" key="RemoteKpda.MakeInstall.MakeCommand">C:\KPDA2020\host\win64\x86_64\usr\bin\cmake.exe</value>
-      <value type="QString" key="remote.MakeInstall.InstallRoot">C:\Users\user\AppData\Local\Temp\QtCreator-pSnpLp</value>
-      <value type="QString" key="remote.MakeInstall.Make">C:\KPDA2020\host\win64\x86_64\usr\bin\cmake.exe</value>
+      <value type="QString" key="RemoteKpda.MakeInstall.MakeArguments">--build C:/tmp/5p27_NEW/BUILD_SERVER --target install</value>
+      <value type="QString" key="RemoteKpda.MakeInstall.MakeCommand">C:\KPDA2021\host\win64\x86_64\usr\bin\cmake.exe</value>
+      <value type="QString" key="remote.MakeInstall.InstallRoot">C:\Users\Даша\AppData\Local\Temp\QtCreator-WjruNm</value>
+      <value type="QString" key="remote.MakeInstall.Make">C:\KPDA2021\host\win64\x86_64\usr\bin\cmake.exe</value>
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -190,7 +190,7 @@
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.0">
     <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
-    <value type="QString" key="Kpda.RunConfig.LocalExecutable">C:\Users\user\Desktop\build-server_mil-2021_x86_Qt_5_7_1_GCC_8_3_0-Debug\server_mil</value>
+    <value type="QString" key="Kpda.RunConfig.LocalExecutable">C:\tmp\5p27_NEW\BUILD_SERVER\server_mil</value>
     <value type="int" key="PE.EnvironmentAspect.Base">1</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">server_mil (на %{Device:Name})</value>

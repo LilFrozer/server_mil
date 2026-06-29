@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <QByteArray>
 #include <QDataStream>
+#include <QIODevice>
 
 using u32 = unsigned;
 using u16 = uint16_t;
@@ -31,6 +32,31 @@ struct client_data {
         in >> str;
         C.ip = str.toStdString();
         in >> C.port;
+        return C;
+    }
+};
+
+struct command_data {
+    std::string cmd{""};
+    int ki{0};
+    int ns{0};
+    static QByteArray serilize(const command_data &s) {
+        QByteArray C;
+        QDataStream out(&C, QIODevice::WriteOnly);
+        out.setVersion(QDataStream::Qt_5_5);
+        out << QString::fromStdString(s.cmd)
+            << s.ki
+            << s.ns;
+        return C;
+    }
+    static command_data deserialize(const QByteArray &s) {
+        command_data C;
+        QDataStream in(s);
+        in.setVersion(QDataStream::Qt_5_5);
+        QString str;
+        in >> str;
+        C.cmd = str.toStdString();
+        in >> C.ki >> C.ns;
         return C;
     }
 };

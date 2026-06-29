@@ -62,7 +62,7 @@ public slots:
     void loadCss();
     void loadStart();
     void loadStop();
-    void loadNewKu(int ki);
+    void loadNewKu(int ki, int ns);
 private:
     std::unique_ptr<fpga_regs::fpga_mem_summator> fpga_regs_;
 
